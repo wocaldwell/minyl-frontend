@@ -6,7 +6,10 @@ angular.module('MinylClient').controller('LoginController', [
   'apiUrl',
 function($scope, $http, $location, RootFactory, apiUrl) {
 
-  $scope.user = {};
+  $scope.user = {
+    username: 'wocaldwell',
+    password: '1234567'
+  };
 
   $scope.login = function() {
       $http({

@@ -25,6 +25,10 @@ angular.module('MinylClient').config(
         controller: 'HomeController',
         templateUrl: 'minyl_frontend/members/home.html'
       })
+      .when('/micollection', {
+        controller: 'MiCollectionController',
+        templateUrl: 'minyl_frontend/members/micollection.html'
+      })
   }
 ]);
 
@@ -36,6 +40,7 @@ angular.module('MinylClient').factory('RootFactory', [
 
     return {
       getApiRoot () {
+        console.log("I'm trying to get the api root. . .", secure_token)
         return $http({
           url: apiUrl,
           headers: {
@@ -47,6 +52,7 @@ angular.module('MinylClient').factory('RootFactory', [
         secure_token = token
       },
       getToken () {
+        console.log('the token is: ', secure_token)
         return secure_token;
       }
     }

@@ -6,25 +6,25 @@ angular.module('MinylClient').controller('HomeController', [
   'apiUrl',
 function($scope, $http, $location, RootFactory, apiUrl) {
 
-  $scope.user = {};
+  // $scope.user = {};
 
-  $scope.login = function() {
-      $http({
-        url: `${apiUrl}/api-token-auth/`,
-        method: "POST",
-        data: {
-          "username": $scope.user.username,
-          "password": $scope.user.password
-        }
-      }).then(
-        res => {
-          RootFactory.setToken(res.data.token);
-          if (res.data.token !== "") {
-            $location.path('/home');
-          }
-        },
-        console.error
-      );
-  };
+  // $scope.login = function() {
+  //     $http({
+  //       url: `${apiUrl}/api-token-auth/`,
+  //       method: "POST",
+  //       data: {
+  //         "username": $scope.user.username,
+  //         "password": $scope.user.password
+  //       }
+  //     }).then(
+  //       res => {
+  //         RootFactory.setToken(res.data.token);
+  //         if (res.data.token !== "") {
+  //           $location.path('/home');
+  //         }
+  //       },
+  //       console.error
+  //     );
+  // };
 
 }]);
