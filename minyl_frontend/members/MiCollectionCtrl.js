@@ -1,27 +1,3 @@
-// angular.module('MinylClient').controller('MiCollectionController', [
-//   '$scope',
-//   '$http',
-//   '$location',
-//   'RootFactory',
-//   'apiUrl',
-// function($scope, $http, $location, RootFactory, apiUrl) {
-
-//   $scope.releases = []
-
-//   $http({
-//     url: `${apiUrl}/micollection`,
-//     headers: {
-//       'Authorization': "Token " + RootFactory.getToken()
-//     }
-//   })
-//   .then(
-//     console.log('releases start', $scope.releases),
-//     res => $scope.releases = res.data.results,
-//     err => console.log
-
-//   )
-//   .then(console.log('releases are', $scope.releases))
-// }]);
 
 app.controller('MiCollectionController', function($scope, $http, $location, RootFactory, apiUrl) {
 
@@ -30,16 +6,20 @@ app.controller('MiCollectionController', function($scope, $http, $location, Root
 
   function getMiCollection() {
     return $http({
-      url: `${apiUrl}/micollection`,
-    headers: {
-      'Authorization': "Token " + RootFactory.getToken()
-    }
+      url: `${apiUrl}/micollection/`,
+      headers: {
+        'Authorization': "Token " + RootFactory.getToken()
+      }
     })
     .then(function(returnedCollection){
       console.log('returned data:', returnedCollection)
       $scope.releases = returnedCollection.data;
       console.log('releases are', $scope.releases);
-      console.log('releases length', $scope.releases.length);
+      for (release in $scope.releases) {
+        if ($scope.releases[release].release_type === 1) {
+          $scope.releases[release].release_type = "LP";
+        }
+      }
     });
   };
 
