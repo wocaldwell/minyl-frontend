@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='MinylClient'>
   <head>
     <meta charset="utf-8">
     <title>miNyl</title>
@@ -13,16 +13,10 @@
     </style>
   </head>
   <body>
-    <div ng-app='MinylClient'>
-      <div>
-        <span>
-          <a ng-href="/#!">miNyl</a>
-          <a ng-href="/#!/register">Sign up</a>
-          <a ng-href="/#!/login">Login</a>
-        </span>
-      </div>
-      <div ng-view></div>
+    <div ng-controller="NavController">
+      <div ng-include="'minyl_frontend/general/nav.html'"></div>
     </div>
+      <div ng-view></div>
 
     <script src='./node_modules/angular/angular.min.js'></script>
     <script src='./node_modules/angular-route/angular-route.min.js'></script>
@@ -33,5 +27,7 @@
     <script src='./minyl_frontend/auth/LoginCtrl.js'></script>
     <script src='./minyl_frontend/auth/RegisterCtrl.js'></script>
     <script src='./minyl_frontend/members/HomeCtrl.js'></script>
+    <script src='./minyl_frontend/members/MiCollectionCtrl.js'></script>
+    <script src='./minyl_frontend/general/NavCtrl.js'></script>
   </body>
 </html>

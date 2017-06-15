@@ -6,7 +6,10 @@ angular.module('MinylClient').controller('LoginController', [
   'apiUrl',
 function($scope, $http, $location, RootFactory, apiUrl) {
 
-  $scope.user = {};
+  $scope.user = {
+    username: 'wocaldwell',
+    password: '1234567'
+  };
 
   $scope.login = function() {
       $http({
@@ -19,9 +22,17 @@ function($scope, $http, $location, RootFactory, apiUrl) {
       }).then(
         res => {
           RootFactory.setToken(res.data.token);
-          if (res.data.token !== "") {
-            $location.path('/home');
-          }
+          // if (res.data.token !== "") {
+          //   $http({
+          //     url: `${apiUrl}/login/`,
+          //     method: "POST",
+          //     data: {
+          //       "username": $scope.user.username,
+          //       "password": $scope.user.password
+          //     }
+          //   });
+          //   $location.path('/home');
+          // }
         },
         console.error
       );
