@@ -1,6 +1,7 @@
-app.factory("ReleaseFactory", function($window, $q, $http, DiscogsCredentials) {
+app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCredentials, RootFactory) {
 
-    let searchParams = {};
+    let searchParams = {},
+        artistId;
 
     let setSearchTerms = function(artist, release, type) {
         searchParams = {
@@ -28,24 +29,43 @@ app.factory("ReleaseFactory", function($window, $q, $http, DiscogsCredentials) {
     };
 
     let getDiscogsFullResource = function(resource_url) {
-        return $q(function(resolve, reject) {
-            $http.get(resource_url)
-            .then(function(resourceObject) {
-                let fullResource = resourceObject.data;
-                console.log('the resource is ', fullResource);
-                resolve(fullResource);
-            })
-            .catch (function(error) {
-                reject(error);
-            });
-        });
+        return $http.get(resource_url);
     };
+
+    let postReleaseArtistToApi = function(discogsFullResource) {
+        return $http({
+            url: `${apiUrl}/artist/`,
+            headers: {
+                'Authorization': "Token " + RootFactory.getToken()
+            },
+            method: "POST",
+            data: {
+                "name": discogsFullResource.artists[0].name
+            }
+        })
+    };
+
+    let postReleaseTracksToApi = function(tracklist, artistId) {
+        return $http({
+            url: `${apiUrl}/track/`,
+            headers: {
+                'Authorization': "Token " + RootFactory.getToken()
+            },
+            method: "POST",
+            data: {
+                "artist_id": artistId,
+                "tracklist": tracklist
+            }
+        })
+    }
 
     return {
         setSearchTerms,
         getSearchTerms,
         getDiscogsMatches,
-        getDiscogsFullResource
+        getDiscogsFullResource,
+        postReleaseArtistToApi,
+        postReleaseTracksToApi
     };
 
 });
