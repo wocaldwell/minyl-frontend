@@ -22,17 +22,9 @@ function($scope, $http, $location, RootFactory, apiUrl) {
       }).then(
         res => {
           RootFactory.setToken(res.data.token);
-          // if (res.data.token !== "") {
-          //   $http({
-          //     url: `${apiUrl}/login/`,
-          //     method: "POST",
-          //     data: {
-          //       "username": $scope.user.username,
-          //       "password": $scope.user.password
-          //     }
-          //   });
-          //   $location.path('/home');
-          // }
+          if (res.data.token !== "") {
+            $location.path('/home');
+          }
         },
         console.error
       );
