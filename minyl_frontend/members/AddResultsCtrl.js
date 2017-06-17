@@ -10,10 +10,12 @@ app.controller('AddResultsController', function($scope, $http, $location, RootFa
 
     $scope.addRelease = function(match) {
         let selectedRelease = match;
+        // console.log('selectedRelease is ', selectedRelease);
 
         ReleaseFactory.getDiscogsFullResource(selectedRelease.resource_url)
         .then(function(returnedResource){
             $scope.resourceCall = returnedResource;
+            // console.log('$scope.resourceCall', $scope.resourceCall)
             let fullResource = returnedResource.data;
             // console.log('the resource is ', fullResource);
             return ReleaseFactory.postReleaseArtistToApi(fullResource)
@@ -22,42 +24,29 @@ app.controller('AddResultsController', function($scope, $http, $location, RootFa
             let tracklist = []
             // console.log('the artist is', returnedArtist)
             let resourceTracks = $scope.resourceCall.data.tracklist
-            // console.log('the track object getResourceTracks ', resourceTracks);
             for (var i=0; i<resourceTracks.length; i++) {
-                tracklist.push({"title": resourceTracks[i].title});
+                tracklist.push({
+                    "title": resourceTracks[i].title,
+                    "position": resourceTracks[i].position
+                });
             }
-            // console.log('the track list is ', tracklist)
-            return ReleaseFactory.postReleaseTracksToApi(tracklist, returnedArtist.data.artist_id)
-        });
-
-        return $http({
-            url: `${apiUrl}/release/`,
-            headers: {
-                'Authorization': "Token " + RootFactory.getToken()
-            },
-            method: "POST",
-            data: {
-                "title": selectedRelease.title.split(' - ')[1],
-                "year": selectedRelease.year,
-                "catalog_number": selectedRelease.catno,
-                "image": selectedRelease.thumb,
-                "release_type": search.searchType
-            }
+            $scope.resourceTracks = resourceTracks;
+            return ReleaseFactory.postTracksToApi(tracklist, returnedArtist.data.artist_id)
         })
-        .then(function(returned_data){
-            console.log('release shoud be added', returned_data)
-            return $http({
-                url: `${apiUrl}/userrelease/`,
-                headers: {
-                    'Authorization': "Token " + RootFactory.getToken()
-                },
-                method: "POST",
-                data: {
-                    "release_id": returned_data.data.release_id,
-                    "own": 1
-                }
-                // $location.path('/micollection');
-            })
-       })
+        .then(function(returnedTracksIds){
+            // console.log('the stuff is: ', returnedTracksIds);
+            $scope.tracksIds = returnedTracksIds.data;
+            return ReleaseFactory.postReleaseToApi(selectedRelease, $scope.resourceCall, search)
+        })
+        .then(function(returnedRelease){
+            // console.log('returnedRelease', returnedRelease);
+            $scope.release = returnedRelease.data;
+            console.log('$scope.release ', $scope.release);
+            return ReleaseFactory.postUserReleaseToApi($scope.release)
+        })
+        .then(function(returnedUserId){
+            // console.log(returnedUserId)
+            return ReleaseFactory.postTrackReleaseToApi($scope.tracksIds, $scope.release)
+        });
     }
 });

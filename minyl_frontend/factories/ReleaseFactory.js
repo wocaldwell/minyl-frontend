@@ -45,7 +45,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
         })
     };
 
-    let postReleaseTracksToApi = function(tracklist, artistId) {
+    let postTracksToApi = function(tracklist, artistId) {
         return $http({
             url: `${apiUrl}/track/`,
             headers: {
@@ -57,7 +57,52 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
                 "tracklist": tracklist
             }
         })
-    }
+    };
+
+    let postReleaseToApi = function(selectedRelease, releaseDetails, type) {
+        return $http({
+            url: `${apiUrl}/release/`,
+            headers: {
+                'Authorization': "Token " + RootFactory.getToken()
+            },
+            method: "POST",
+            data: {
+                "title": releaseDetails.data.title,
+                "year": releaseDetails.data.year,
+                "catalog_number": selectedRelease.catno,
+                "image": selectedRelease.thumb,
+                "release_type": type.searchType
+            }
+        })
+    };
+
+    let postUserReleaseToApi = function(release) {
+        return $http({
+            url: `${apiUrl}/userrelease/`,
+            headers: {
+                'Authorization': "Token " + RootFactory.getToken()
+            },
+            method: "POST",
+            data: {
+                "release_id": release.release_id,
+                "own": 1
+            }
+        })
+    };
+
+    let postTrackReleaseToApi = function(tracksIds, release) {
+        return $http({
+            url: `${apiUrl}/trackrelease/`,
+            headers: {
+                'Authorization': "Token " + RootFactory.getToken()
+            },
+            method: "POST",
+            data: {
+                "release_id": release.release_id,
+                "tracksIds": tracksIds
+            }
+        })
+    };
 
     return {
         setSearchTerms,
@@ -65,7 +110,10 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
         getDiscogsMatches,
         getDiscogsFullResource,
         postReleaseArtistToApi,
-        postReleaseTracksToApi
+        postTracksToApi,
+        postReleaseToApi,
+        postUserReleaseToApi,
+        postTrackReleaseToApi
     };
 
 });

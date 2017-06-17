@@ -60,7 +60,7 @@ angular.module('MinylClient').factory('RootFactory', [
         secure_token = token
       },
       getToken () {
-        console.log('the token is: ', secure_token)
+        // console.log('the token is: ', secure_token)
         return secure_token;
       }
     }
