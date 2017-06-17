@@ -1,0 +1,21 @@
+<div>
+  <input type="text" placeholder="artist" ng-model="((search.artist))">
+  <input type="text" placeholder="album" ng-model="((search.release))">
+  <label>
+    <input type="radio" ng-model="search.type" value="1">
+    LP
+  </label>
+  <label>
+    <input type="radio" ng-model="search.type" value="4">
+    12-inch
+  </label>
+  <label>
+    <input type="radio" ng-model="search.type" value="3">
+    10-inch
+  </label>
+  <label>
+    <input type="radio" ng-model="search.type" value="2">
+    7-inch
+  </label>
+  <button type="submit" ng-click="findMatches()">find it</button>
+</div>

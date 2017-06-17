@@ -1,4 +1,3 @@
-
 app.controller('MiCollectionController', function($scope, $http, $location, RootFactory, apiUrl) {
 
   $scope.releases = []
@@ -15,11 +14,11 @@ app.controller('MiCollectionController', function($scope, $http, $location, Root
       console.log('returned data:', returnedCollection)
       $scope.releases = returnedCollection.data;
       console.log('releases are', $scope.releases);
-      for (release in $scope.releases) {
-        if ($scope.releases[release].release_type === 1) {
-          $scope.releases[release].release_type = "LP";
-        }
-      }
+      // for (release in $scope.releases) {
+      //   if ($scope.releases[release].release_type === 1) {
+      //     $scope.releases[release].release_type = "LP";
+      //   }
+      // }
     });
   };
 

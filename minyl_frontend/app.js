@@ -29,6 +29,14 @@ angular.module('MinylClient').config(
         controller: 'MiCollectionController',
         templateUrl: 'minyl_frontend/members/micollection.html'
       })
+      .when('/addform', {
+        controller: 'AddFormController',
+        templateUrl: 'minyl_frontend/members/addform.html'
+      })
+      .when('/addresults', {
+        controller: 'AddResultsController',
+        templateUrl: 'minyl_frontend/members/addresults.html'
+      })
   }
 ]);
 
@@ -52,7 +60,7 @@ angular.module('MinylClient').factory('RootFactory', [
         secure_token = token
       },
       getToken () {
-        console.log('the token is: ', secure_token)
+        // console.log('the token is: ', secure_token)
         return secure_token;
       }
     }

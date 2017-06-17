@@ -1,0 +1,8 @@
+<h2>Search Results</h2>
+<div ng-repeat="match in searchMatches">
+ <img src="((match.thumb))">
+ <p>((match.title))</p>
+ <p>((match.year))</p>
+ <p>((match.label[0]))</p>
+ <button type="submit" ng-click="addRelease(match)">add it</button>
+</div>
