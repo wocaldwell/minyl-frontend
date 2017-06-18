@@ -37,6 +37,14 @@ angular.module('MinylClient').config(
         controller: 'AddResultsController',
         templateUrl: 'minyl_frontend/members/addresults.html'
       })
+      .when('/searchresults', {
+        controller: 'SearchResultsController',
+        templateUrl: 'minyl_frontend/members/searchresults.html'
+      })
+      .when('/noresults', {
+        controller: 'NoResultsController',
+        templateUrl: 'minyl_frontend/members/noresults.html'
+      })
   }
 ]);
 

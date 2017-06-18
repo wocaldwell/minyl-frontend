@@ -1,30 +1,11 @@
-angular.module('MinylClient').controller('HomeController', [
-  '$scope',
-  '$http',
-  '$location',
-  'RootFactory',
-  'apiUrl',
-function($scope, $http, $location, RootFactory, apiUrl) {
+app.controller('HomeController', function($scope, $http, $location, TrackFactory) {
 
-  // $scope.user = {};
+    $scope.trackName = 'Barbarism Begins At Home';
 
-  // $scope.login = function() {
-  //     $http({
-  //       url: `${apiUrl}/api-token-auth/`,
-  //       method: "POST",
-  //       data: {
-  //         "username": $scope.user.username,
-  //         "password": $scope.user.password
-  //       }
-  //     }).then(
-  //       res => {
-  //         RootFactory.setToken(res.data.token);
-  //         if (res.data.token !== "") {
-  //           $location.path('/home');
-  //         }
-  //       },
-  //       console.error
-  //     );
-  // };
+    $scope.searchForTrack = function() {
+        console.log('$scope.trackName in searchForTrack', $scope.trackName)
+        TrackFactory.setSearchedTrack($scope.trackName);
+        $location.path('/searchresults');
+    };
 
-}]);
+});
