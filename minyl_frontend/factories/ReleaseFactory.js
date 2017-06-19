@@ -1,7 +1,8 @@
 app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCredentials, RootFactory) {
 
     let searchParams = {},
-        artistId;
+        artistId,
+        releaseId;
 
     let setSearchTerms = function(artist, release, type) {
         searchParams = {
@@ -60,6 +61,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
     };
 
     let postReleaseToApi = function(selectedRelease, releaseDetails, type) {
+        console.log('selectedRelease in postReleaseToApi: ', selectedRelease.label[0])
         return $http({
             url: `${apiUrl}/release/`,
             headers: {
@@ -69,6 +71,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
             data: {
                 "title": releaseDetails.data.title,
                 "year": releaseDetails.data.year,
+                "label": selectedRelease.label[0],
                 "catalog_number": selectedRelease.catno,
                 "image": selectedRelease.thumb,
                 "release_type": type
@@ -132,6 +135,27 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
         });
     };
 
+    let setReleaseId = function(selectedReleaseId) {
+        releaseId = selectedReleaseId;
+    };
+
+    let getReleaseId = function() {
+        return releaseId;
+    };
+
+    let getReleaseDetailsFromApi = function(selectedReleaseId) {
+        return $http({
+            url: `${apiUrl}/releasedetails/`,
+            headers: {
+                'Authorization': "Token " + RootFactory.getToken()
+            },
+            method: "POST",
+            data: {
+                "release_id": selectedReleaseId
+            }
+        })
+    };
+
     return {
         setSearchTerms,
         getSearchTerms,
@@ -143,7 +167,10 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
         postUserReleaseToApi,
         postTrackReleaseToApi,
         getDiscogsTrackMatches,
-        getDiscogsArtistTrackMatches
+        getDiscogsArtistTrackMatches,
+        setReleaseId,
+        getReleaseId,
+        getReleaseDetailsFromApi
     };
 
 });

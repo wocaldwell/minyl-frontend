@@ -10,12 +10,12 @@ app.controller('AddResultsController', function($scope, $http, $location, RootFa
 
     $scope.addRelease = function(match) {
         let selectedRelease = match;
-        // console.log('selectedRelease is ', selectedRelease);
+        console.log('selectedRelease is ', selectedRelease);
 
         ReleaseFactory.getDiscogsFullResource(selectedRelease.resource_url)
         .then(function(returnedResource){
             $scope.resourceCall = returnedResource;
-            // console.log('$scope.resourceCall', $scope.resourceCall)
+            console.log('$scope.resourceCall', $scope.resourceCall)
             let fullResource = returnedResource.data;
             // console.log('the resource is ', fullResource);
             return ReleaseFactory.postReleaseArtistToApi(fullResource)

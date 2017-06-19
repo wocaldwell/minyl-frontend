@@ -1,4 +1,4 @@
-app.controller('MiCollectionController', function($scope, $http, $location, RootFactory, apiUrl) {
+app.controller('MiCollectionController', function($scope, $http, $location, RootFactory, apiUrl, ReleaseFactory) {
 
   $scope.releases = []
 
@@ -15,5 +15,10 @@ app.controller('MiCollectionController', function($scope, $http, $location, Root
   .then(function(returnedCollection){
     $scope.releases = returnedCollection.data;
   });
+
+  $scope.setReleaseId = function(releaseId){
+    console.log('selected release id: ', releaseId);
+    ReleaseFactory.setReleaseId(releaseId);
+  };
 
 });

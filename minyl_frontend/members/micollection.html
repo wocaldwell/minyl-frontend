@@ -2,6 +2,6 @@
 
 <div>
   <div ng-repeat="release in releases track by $index">
-    ((release.artist)), ((release.title)), ((release.year)), ((release.release_type))
+    <a ng-href="/#!/releasedetails" ng-click="setReleaseId(release.release_id)">((release.artist)), ((release.title)), ((release.year)), ((release.release_type))</a>
   </div>
 </div>

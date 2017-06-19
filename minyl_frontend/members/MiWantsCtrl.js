@@ -1,4 +1,4 @@
-app.controller('MiWantsController', function($scope, $http, $location, RootFactory, apiUrl) {
+app.controller('MiWantsController', function($scope, $http, $location, RootFactory, apiUrl, ReleaseFactory) {
 
   $scope.releases = []
 
@@ -28,6 +28,11 @@ app.controller('MiWantsController', function($scope, $http, $location, RootFacto
         'release_id': release_id
       }
     })
-  }
+  };
+
+  $scope.setReleaseId = function(releaseId){
+    console.log('selected release id: ', releaseId);
+    ReleaseFactory.setReleaseId(releaseId);
+  };
 
 });

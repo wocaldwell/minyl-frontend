@@ -57,6 +57,10 @@ angular.module('MinylClient').config(
         controller: 'AddMiWantsController',
         templateUrl: 'minyl_frontend/members/addmiwants.html'
       })
+      .when('/releasedetails', {
+        controller: 'ReleaseDetailsController',
+        templateUrl: 'minyl_frontend/members/releasedetails.html'
+      })
   }
 ]);
 
