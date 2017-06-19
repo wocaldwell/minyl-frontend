@@ -71,12 +71,12 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
                 "year": releaseDetails.data.year,
                 "catalog_number": selectedRelease.catno,
                 "image": selectedRelease.thumb,
-                "release_type": type.searchType
+                "release_type": type
             }
         })
     };
 
-    let postUserReleaseToApi = function(release) {
+    let postUserReleaseToApi = function(release, own) {
         return $http({
             url: `${apiUrl}/userrelease/`,
             headers: {
@@ -85,7 +85,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
             method: "POST",
             data: {
                 "release_id": release.release_id,
-                "own": 1
+                "own": own
             }
         })
     };
@@ -104,6 +104,34 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
         })
     };
 
+    let getDiscogsTrackMatches = function(track) {
+        return $q(function(resolve, reject) {
+            $http.get(`https://api.discogs.com/database/search?track=${track}&format=vinyl&key=${DiscogsCredentials.key}&secret=${DiscogsCredentials.secret}`)
+            .then(function(returnedMatrix) {
+                let matchesWithTrack = returnedMatrix.data.results;
+                console.log('releases with that track are: ', matchesWithTrack)
+                resolve(matchesWithTrack);
+            })
+            .catch (function(error) {
+                reject(error);
+            });
+        });
+    };
+
+    let getDiscogsArtistTrackMatches = function(artist, track) {
+        return $q(function(resolve, reject) {
+            $http.get(`https://api.discogs.com/database/search?artist=${artist}&track=${track}&format=vinyl&key=${DiscogsCredentials.key}&secret=${DiscogsCredentials.secret}`)
+            .then(function(returnedMatrix) {
+                let matchesWithTrack = returnedMatrix.data.results;
+                console.log('releases with that track are: ', matchesWithTrack)
+                resolve(matchesWithTrack);
+            })
+            .catch (function(error) {
+                reject(error);
+            });
+        });
+    };
+
     return {
         setSearchTerms,
         getSearchTerms,
@@ -113,7 +141,9 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
         postTracksToApi,
         postReleaseToApi,
         postUserReleaseToApi,
-        postTrackReleaseToApi
+        postTrackReleaseToApi,
+        getDiscogsTrackMatches,
+        getDiscogsArtistTrackMatches
     };
 
 });

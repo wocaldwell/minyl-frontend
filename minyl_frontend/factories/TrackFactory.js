@@ -1,6 +1,8 @@
 app.factory("TrackFactory", function($window, $q, $http, apiUrl, DiscogsCredentials, RootFactory) {
 
-    trackTitle = '';
+    let trackTitle = '',
+        trackArtist = '';
+
 
     let getUserReleasesWithTrack = function(trackTitle) {
         return $http({
@@ -17,16 +19,26 @@ app.factory("TrackFactory", function($window, $q, $http, apiUrl, DiscogsCredenti
 
     let setSearchedTrack = function(searchedTitle) {
         trackTitle = searchedTitle;
-    }
+    };
 
     let getSearchedTrack = function() {
         return trackTitle;
-    }
+    };
+
+    let setSearchedTrackArtist = function(artistName) {
+        trackArtist = artistName;
+    };
+
+    let getSearchedTrackArtist = function() {
+        return trackArtist;
+    };
 
     return {
         getUserReleasesWithTrack,
         setSearchedTrack,
-        getSearchedTrack
+        getSearchedTrack,
+        setSearchedTrackArtist,
+        getSearchedTrackArtist
     }
 
 

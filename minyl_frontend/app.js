@@ -1,5 +1,5 @@
 // Create main Angular module
-var app = angular.module('MinylClient', ['ngRoute'])
+var app = angular.module('MinylClient', ['ngRoute', 'angular.filter'])
             .constant('apiUrl', "http://localhost:8000");
 
 
@@ -44,6 +44,14 @@ angular.module('MinylClient').config(
       .when('/noresults', {
         controller: 'NoResultsController',
         templateUrl: 'minyl_frontend/members/noresults.html'
+      })
+      .when('/wantsearchresults', {
+        controller: 'WantSearchResultsController',
+        templateUrl: 'minyl_frontend/members/wantsearchresults.html'
+      })
+      .when('/addmiwants', {
+        controller: 'AddMiWantsController',
+        templateUrl: 'minyl_frontend/members/addmiwants.html'
       })
   }
 ]);
