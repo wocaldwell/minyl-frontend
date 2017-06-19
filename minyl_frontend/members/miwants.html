@@ -1,9 +1,7 @@
 <h2>miWants</h2>
 <div ng-repeat='release in miWantsReleases'>
     <img src='((release.image))'>
-    <p>((release.artist))</p>
-    <p>((release.title))</p>
-    <p>((release.year))</p>
+    <a ng-href="/#!/releasedetails" ng-click="setReleaseId(release.release_id)"><p>((release.artist)) - ((release.title)) - ((release.year))</p></a>
     <p>((release.release_type))</p>
     <button type="submit" ng-click="">remove</button>
     <button type="submit" ng-click="changeWantToOwn(release.release_id)">I got it!</button>

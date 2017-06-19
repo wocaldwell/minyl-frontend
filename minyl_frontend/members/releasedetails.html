@@ -1,0 +1,21 @@
+<h2>Release Details</h2>
+
+<div>
+    <img src='((releaseDetails.image))'>
+    <p>((releaseDetails.artist)) - ((releaseDetails.title)) - ((releaseDetails.year))</p>
+    <p>((releaseDetails.release_type))</p>
+    <p>((releaseDetails.label)) - ((releaseDetails.catalog_number))</p>
+    <p>Tracklist:</p>
+    <table>
+      <tr>
+        <th>Position</th>
+        <th>Title</th>
+      </tr>
+      <tr ng-repeat='track in releaseDetails.tracklist | unique: "track_position"'>
+        <td>((track.track_position))</td>
+        <td>((track.track_title))</td>
+      </tr>
+    </table>
+    <p>I ((releaseStatus)) this</p>
+    <button type="submit" ng-click="">remove</button>
+</div>
