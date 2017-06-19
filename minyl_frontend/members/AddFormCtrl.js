@@ -1,7 +1,7 @@
 app.controller('AddFormController', function($scope, $http, $location, RootFactory, apiUrl, ReleaseFactory) {
   $scope.search = {
     artist: 'The Smiths',
-    release: 'Meat is Murder',
+    release: 'Hatful of Hollow',
     type: '1'
   };
 

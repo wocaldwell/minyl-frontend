@@ -49,6 +49,9 @@ app.controller('AddResultsController', function($scope, $http, $location, RootFa
         .then(function(returnedUserId){
             // console.log(returnedUserId)
             return ReleaseFactory.postTrackReleaseToApi($scope.tracksIds, $scope.release)
+        })
+        .then(function(blah){
+            $location.path('/micollection');
         });
     }
 });

@@ -28,11 +28,18 @@ app.controller('MiWantsController', function($scope, $http, $location, RootFacto
         'release_id': release_id
       }
     })
+    .then(function(){
+      $location.path('/micollection');
+    });
   };
 
   $scope.setReleaseId = function(releaseId){
     console.log('selected release id: ', releaseId);
     ReleaseFactory.setReleaseId(releaseId);
+  };
+
+  $scope.removeUserRelease = function(releaseId){
+    ReleaseFactory.deleteUserRelease(releaseId);
   };
 
 });

@@ -109,7 +109,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
 
     let getDiscogsTrackMatches = function(track) {
         return $q(function(resolve, reject) {
-            $http.get(`https://api.discogs.com/database/search?track=${track}&format=vinyl&key=${DiscogsCredentials.key}&secret=${DiscogsCredentials.secret}`)
+            $http.get(`https://api.discogs.com/database/search?track=${track}&format=vinyl&key=${DiscogsCredentials.key}&secret=${DiscogsCredentials.secret}&page=1&per_page=100`)
             .then(function(returnedMatrix) {
                 let matchesWithTrack = returnedMatrix.data.results;
                 console.log('releases with that track are: ', matchesWithTrack)
@@ -123,7 +123,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
 
     let getDiscogsArtistTrackMatches = function(artist, track) {
         return $q(function(resolve, reject) {
-            $http.get(`https://api.discogs.com/database/search?artist=${artist}&track=${track}&format=vinyl&key=${DiscogsCredentials.key}&secret=${DiscogsCredentials.secret}`)
+            $http.get(`https://api.discogs.com/database/search?artist=${artist}&track=${track}&format=vinyl&key=${DiscogsCredentials.key}&secret=${DiscogsCredentials.secret}&page=2&per_page=75`)
             .then(function(returnedMatrix) {
                 let matchesWithTrack = returnedMatrix.data.results;
                 console.log('releases with that track are: ', matchesWithTrack)
@@ -156,6 +156,19 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
         })
     };
 
+    let deleteUserRelease = function(selectedRelease) {
+        return $http({
+            url: `${apiUrl}/deleteuserrelease/`,
+            headers: {
+                'Authorization': "Token " + RootFactory.getToken()
+            },
+            method: "DELETE",
+            data: {
+                "release_id": selectedRelease
+            }
+        })
+    }
+
     return {
         setSearchTerms,
         getSearchTerms,
@@ -170,7 +183,8 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
         getDiscogsArtistTrackMatches,
         setReleaseId,
         getReleaseId,
-        getReleaseDetailsFromApi
+        getReleaseDetailsFromApi,
+        deleteUserRelease
     };
 
 });

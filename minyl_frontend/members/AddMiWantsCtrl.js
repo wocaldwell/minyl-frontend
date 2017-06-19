@@ -59,6 +59,9 @@ app.controller('AddMiWantsController', function($scope, $http, $location, TrackF
         .then(function(returnedUserId){
             // console.log(returnedUserId)
             return ReleaseFactory.postTrackReleaseToApi($scope.tracksIds, $scope.release)
+        })
+        .then(function(blah){
+            $location.path('/miwants');
         });
     }
 
