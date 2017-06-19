@@ -1,21 +1,22 @@
-app.controller('AddResultsController', function($scope, $http, $location, RootFactory, apiUrl, ReleaseFactory) {
+app.controller('AddMiWantsController', function($scope, $http, $location, TrackFactory, ReleaseFactory) {
 
-    let search = ReleaseFactory.getSearchTerms()
+    let miWantsArtist = TrackFactory.getSearchedTrackArtist();
+    let miWantsTrack = TrackFactory.getSearchedTrack();
 
-    ReleaseFactory.getDiscogsMatches(search.searchArtist, search.searchRelease)
+    ReleaseFactory.getDiscogsArtistTrackMatches(miWantsArtist, miWantsTrack)
     .then(function(returnedMatches) {
-        // console.log("the matches are:", returnedMatches);
+        console.log("the matches are:", returnedMatches);
         $scope.searchMatches = returnedMatches;
     })
 
-    $scope.addRelease = function(match) {
+    $scope.addMiWantsRelease = function(match) {
         let selectedRelease = match;
         // console.log('selectedRelease is ', selectedRelease);
 
         ReleaseFactory.getDiscogsFullResource(selectedRelease.resource_url)
         .then(function(returnedResource){
             $scope.resourceCall = returnedResource;
-            // console.log('$scope.resourceCall', $scope.resourceCall)
+            console.log('$scope.resourceCall', $scope.resourceCall)
             let fullResource = returnedResource.data;
             // console.log('the resource is ', fullResource);
             return ReleaseFactory.postReleaseArtistToApi(fullResource)
@@ -36,13 +37,22 @@ app.controller('AddResultsController', function($scope, $http, $location, RootFa
         .then(function(returnedTracksIds){
             // console.log('the stuff is: ', returnedTracksIds);
             $scope.tracksIds = returnedTracksIds.data;
-            let releaseType = search.searchType;
+            let releaseType = $scope.resourceCall.data.formats[0].descriptions[0];
+            if (releaseType === 'LP'){
+                releaseType = 1;
+            } if (releaseType === '7"'){
+                releaseType = 2;
+            } if (releaseType === '10"'){
+                releaseType = 3;
+            } if (releaseType === '12"'){
+                releaseType = 4;
+            }
             return ReleaseFactory.postReleaseToApi(selectedRelease, $scope.resourceCall, releaseType)
         })
         .then(function(returnedRelease){
             // console.log('returnedRelease', returnedRelease);
             $scope.release = returnedRelease.data;
-            let ownProperty = 1;
+            let ownProperty = 0;
             console.log('$scope.release ', $scope.release);
             return ReleaseFactory.postUserReleaseToApi($scope.release, ownProperty)
         })
@@ -51,4 +61,5 @@ app.controller('AddResultsController', function($scope, $http, $location, RootFa
             return ReleaseFactory.postTrackReleaseToApi($scope.tracksIds, $scope.release)
         });
     }
+
 });
