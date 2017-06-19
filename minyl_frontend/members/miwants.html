@@ -1,0 +1,10 @@
+<h2>miWants</h2>
+<div ng-repeat='release in miWantsReleases'>
+    <img src='((release.image))'>
+    <p>((release.artist))</p>
+    <p>((release.title))</p>
+    <p>((release.year))</p>
+    <p>((release.release_type))</p>
+    <button type="submit" ng-click="">remove</button>
+    <button type="submit" ng-click="changeWantToOwn(release.release_id)">I got it!</button>
+</div>

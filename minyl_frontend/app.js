@@ -29,6 +29,10 @@ angular.module('MinylClient').config(
         controller: 'MiCollectionController',
         templateUrl: 'minyl_frontend/members/micollection.html'
       })
+      .when('/miwants', {
+        controller: 'MiWantsController',
+        templateUrl: 'minyl_frontend/members/miwants.html'
+      })
       .when('/addform', {
         controller: 'AddFormController',
         templateUrl: 'minyl_frontend/members/addform.html'
