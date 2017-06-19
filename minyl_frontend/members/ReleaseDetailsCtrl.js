@@ -13,4 +13,8 @@ app.controller('ReleaseDetailsController', function($scope, $http, $location, Re
         };
     });
 
+    $scope.removeUserRelease = function(releaseId){
+        ReleaseFactory.deleteUserRelease(releaseId);
+    };
+
 });
