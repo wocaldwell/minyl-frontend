@@ -1,8 +1,18 @@
-<h2>((searchedTrack.track_title))</h2>
-<div ng-repeat='release in releases'>
-    <img src="((release.image))">
-    <p>((release.artist)) - ((release.title))</p>
-    <p>((release.year))</p>
-    <p>((release.release_type))</p>
-    <p>Track ((release.track_position))</p>
+<div class="container-fluid">
+    <div align="center">
+        <h2>((searchedTrack.track_title))</h2>
+    </div>
+    <div ng-repeat='release in releases'>
+        <div class="row">
+        </div>
+            <div class="col-sm-4">
+                <img src="((release.image))">
+            </div>
+            <div class="col-sm-8">
+                <h4>((release.artist)) - ((release.title))</h4>
+                <p>((release.year))</p>
+                <p>((release.release_type))</p>
+                <h4>Track ((release.track_position))</h4>
+            </div>
+    </div>
 </div>

@@ -1,5 +1,12 @@
-<h1>What do you want to hear?</h1>
-<div>
-    <input type="text" placeholder="Song Titile" ng-model="((trackName))">
-    <button type="submit" ng-click="searchForTrack()">Find it!</button>
+<div class="container-fluid">
+    <div align="center">
+        <h2>What do you want to hear?</h2>
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="songInput">Song Title:</label>
+            <input type="text" class="form-control" id="songInput" placeholder="Song Title" ng-model="((trackName))">
+        </div>
+        <button type="submit" class="btn" ng-click="searchForTrack()">Find it</button>
+    </form>
 </div>

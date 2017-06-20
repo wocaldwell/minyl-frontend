@@ -1,7 +1,23 @@
-<h2>This is your record collection.</h2>
-
-<div>
-  <div ng-repeat="release in releases track by $index">
-    <a ng-href="/#!/releasedetails" ng-click="setReleaseId(release.release_id)">((release.artist)), ((release.title)), ((release.year)), ((release.release_type))</a>
-  </div>
+<div class="container-fluid">
+    <div align="center">
+        <h2>miCollection</h2>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>artist</th>
+                <th>album</th>
+                <th>year</th>
+                <th>type</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="release in releases track by $index">
+            <tr ng-click="setReleaseId(release.release_id)">
+                <td class="hoverPointer">((release.artist))</td>
+                <td class="hoverPointer">((release.title))</td>
+                <td class="hoverPointer">((release.year))</td>
+                <td class="hoverPointer">((release.release_type))</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

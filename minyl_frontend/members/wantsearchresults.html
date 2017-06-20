@@ -1,4 +1,7 @@
-<div ng-repeat="artist in trackArtists | unique: 'artist'">
-    <h3>((requestedTrack)) by ((artist.artist))</h3>
-    <button type="submit" ng-click="searchArtistTrackReleases(artist.artist, requestedTrack)">I want it</button>
+<div id="wantSearchResults" class="container-fluid" ng-repeat="artist in trackArtists | unique: 'artist'">
+    <h3>((requestedTrack)) by ((artist.artist))
+        <span class="pull-right wantItButton">
+            <button class="btn" type="submit" ng-click="searchArtistTrackReleases(artist.artist, requestedTrack)">I want it</button>
+        <span>
+    </h3>
 </div>

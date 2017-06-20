@@ -1,8 +1,20 @@
-<h2>miWants</h2>
-<div ng-repeat='release in miWantsReleases'>
-    <img src='((release.image))'>
-    <a ng-href="/#!/releasedetails" ng-click="setReleaseId(release.release_id)"><p>((release.artist)) - ((release.title)) - ((release.year))</p></a>
-    <p>((release.release_type))</p>
-    <button type="submit" ng-click="removeUserRelease(release.release_id)">remove</button>
-    <button type="submit" ng-click="changeWantToOwn(release.release_id)">I got it!</button>
+<div class="container-fluid">
+    <div align="center">
+        <h2>miWants</h2>
+    </div>
+    <div class="container-fluid" ng-repeat='release in miWantsReleases'>
+        <div class="row release">
+            <div class="col-sm-3">
+                <img src='((release.image))'>
+            </div>
+            <div class="col-sm-6">
+                <a ng-href="/#!/releasedetails" ng-click="setReleaseId(release.release_id)"><p>((release.artist)) - ((release.title)) - ((release.year))</p></a>
+                <p>((release.release_type))</p>
+            </div>
+            <div class="col-sm-3">
+                <button type="submit" class="btn" ng-click="removeUserRelease(release.release_id)">remove</button>
+                <button type="submit" class="btn" ng-click="changeWantToOwn(release.release_id)">I got it!</button>
+            </div>
+        </div>
+    </div>
 </div>
