@@ -1,0 +1,20 @@
+body {
+    margin-top: 50px;
+}
+
+.hoverPointer:hover {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.release {
+    margin-bottom: 10px;
+}
+
+.wantItButton {
+    display: inline-block;
+}
+
+#wantSearchResults {
+    max-width: 800px;
+}

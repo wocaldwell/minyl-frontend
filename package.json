@@ -8,9 +8,12 @@
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {},
   "dependencies": {
     "angular": "^1.6.3",
     "angular-cookies": "^1.6.3",
-    "angular-route": "^1.5.8"
+    "angular-route": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1"
   }
 }

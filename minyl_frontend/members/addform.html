@@ -1,21 +1,38 @@
-<div>
-  <input type="text" placeholder="artist" ng-model="((search.artist))">
-  <input type="text" placeholder="album" ng-model="((search.release))">
-  <label>
-    <input type="radio" ng-model="search.type" value="1">
-    LP
-  </label>
-  <label>
-    <input type="radio" ng-model="search.type" value="4">
-    12-inch
-  </label>
-  <label>
-    <input type="radio" ng-model="search.type" value="3">
-    10-inch
-  </label>
-  <label>
-    <input type="radio" ng-model="search.type" value="2">
-    7-inch
-  </label>
-  <button type="submit" ng-click="findMatches()">find it</button>
+<div class="container-fluid">
+    <div align="center">
+        <h2>Add a record</h2>
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="artistInput">Artist:</label>
+            <input type="text" class="form-control" id="artistInput"  placeholder="artist" ng-model="((search.artist))">
+        </div>
+        <div class="form-group">
+            <label for="albumInput">Album:</label>
+            <input type="text" class="form-control" id="albumInput" placeholder="album" ng-model="((search.release))">
+        </div>
+        <fieldset class="form-group">
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" ng-model="search.type" value="1"> LP
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" ng-model="search.type" value="4"> 12-inch
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" ng-model="search.type" value="3"> 10-inch
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" ng-model="search.type" value="2"> 7-inch
+                </label>
+            </div>
+        </fieldset>
+        <button type="submit" class="btn" ng-click="findMatches()">find it</button>
+    </form>
 </div>

@@ -1,14 +1,19 @@
-<h1>Register New Account</h1>
 
-<div>
-  <div>
-    Email: <input type="text" placeholder="Email" ng-model="((user.email))">
-  </div>
-  <div>
-    Username: <input type="text" placeholder="Username" ng-model="((user.username))">
-  </div>
-  <div>
-    Password: <input type="password" placeholder="Password" ng-model="((user.password))">
-  </div>
-  <button type="submit" ng-click="register()">Log In</button>
+<div class="container-fluid">
+    <h2>Join!</h2>
+    <form>
+        <div class="form-group">
+            <label for="emailInput">Email:</label>
+            <input type="text" class="form-control" id="emailInput" placeholder="Email" ng-model="((user.email))">
+        </div>
+        <div class="form-group">
+            <label for="usernameInput">Username:</label>
+            <input type="text" class="form-control" id="usernameInput" placeholder="Username" ng-model="((user.username))">
+        </div>
+        <div class="form-group">
+            <label for="passwordInput">Password:</label>
+            <input type="password" class="form-control" id="passwordInput" placeholder="Password" ng-model="((user.password))">
+        </div>
+        <button type="submit" class="btn" ng-click="register()">Sign up</button>
+    </form>
 </div>

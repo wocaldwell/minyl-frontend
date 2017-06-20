@@ -1,21 +1,40 @@
-<h2>Release Details</h2>
+<div class="container-fluid">
+    <div align="center">
+        <h2>Release Details</h2>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <img src='((releaseDetails.image))'>
+        </div>
+        <div class="col-sm-6">
+            <h4>((releaseDetails.artist)) - ((releaseDetails.title)) - ((releaseDetails.year))</h4>
+            <p>((releaseDetails.release_type))</p>
+            <p>((releaseDetails.label)) - ((releaseDetails.catalog_number))</p>
+        </div>
+    </div>
+    <div class="row">
+    </div>
+        <div class="col-sm-6">
+            <h4>Tracklist:</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='track in releaseDetails.tracklist | unique: "track_position"'>
+                        <td>((track.track_position))</td>
+                        <td>((track.track_title))</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <h4>I ((releaseStatus)) this</h4>
+            <button type="submit" class="btn" ng-click="removeUserRelease(releaseDetails.release_id)">remove</button>
+        </div>
+</div>
 
-<div>
-    <img src='((releaseDetails.image))'>
-    <p>((releaseDetails.artist)) - ((releaseDetails.title)) - ((releaseDetails.year))</p>
-    <p>((releaseDetails.release_type))</p>
-    <p>((releaseDetails.label)) - ((releaseDetails.catalog_number))</p>
-    <p>Tracklist:</p>
-    <table>
-      <tr>
-        <th>Position</th>
-        <th>Title</th>
-      </tr>
-      <tr ng-repeat='track in releaseDetails.tracklist | unique: "track_position"'>
-        <td>((track.track_position))</td>
-        <td>((track.track_title))</td>
-      </tr>
-    </table>
-    <p>I ((releaseStatus)) this</p>
-    <button type="submit" ng-click="removeUserRelease(releaseDetails.release_id)">remove</button>
 </div>
