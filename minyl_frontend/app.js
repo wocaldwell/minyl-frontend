@@ -13,6 +13,10 @@ angular.module('MinylClient').config(
     $interpolateProvider.endSymbol('))');
 
     $routeProvider
+      .when('/', {
+        controller: 'SplashController',
+        templateUrl: 'minyl_frontend/general/splash.html'
+      })
       .when('/login', {
         controller: 'LoginController',
         templateUrl: 'minyl_frontend/auth/login.html'
