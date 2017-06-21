@@ -2,8 +2,8 @@
     <div align="center">
         <h2>((searchedTrack.track_title))</h2>
     </div>
-    <div ng-repeat='release in releases'>
-        <div class="row">
+    <div ng-repeat='release in releases | unique: "track_position"'>
+        <div class="row release">
         </div>
             <div class="col-sm-4">
                 <img src="((release.image))">
