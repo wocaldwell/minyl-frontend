@@ -3,11 +3,10 @@ app.controller('HomeController', function($scope, $http, $location, TrackFactory
     AuthFactory.getEnvKeysFromAPI()
     .then(function(returnedVars){
         let keys = returnedVars.data;
-        console.log('the envs are here!', keys);
         AuthFactory.setDiscogsCredentials(keys);
     });
 
-    $scope.trackName = 'Worst Trip';
+    $scope.trackName = '';
 
     $scope.searchForTrack = function() {
         console.log('$scope.trackName in searchForTrack', $scope.trackName)
