@@ -15,7 +15,6 @@ app.factory("AuthFactory", function($window, $q, $http, apiUrl, RootFactory) {
     let setDiscogsCredentials = function(creds) {
         discogsCredentials["key"] = creds.key;
         discogsCredentials["secret"] = creds.secret;
-        console.log('cred are:', discogsCredentials)
     }
 
     let getDiscogsCredentials = function(creds) {
