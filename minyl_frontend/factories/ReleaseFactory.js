@@ -1,4 +1,4 @@
-app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCredentials, RootFactory) {
+app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, RootFactory) {
 
     let searchParams = {},
         artistId,
@@ -18,7 +18,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
 
     let getDiscogsMatches = function(artist, release) {
         return $q(function(resolve, reject) {
-            $http.get(`https://api.discogs.com/database/search?artist=${artist}&release_title=${release}&format=vinyl&key=${DiscogsCredentials.key}&secret=${DiscogsCredentials.secret}`)
+            $http.get(`https://api.discogs.com/database/search?artist=${artist}&release_title=${release}&format=vinyl&key=${AuthFactory.discogsCredentials.key}&secret=${AuthFactory.discogsCredentials.secret}`)
             .then(function(returnedMatrix) {
                 let matchesObject = returnedMatrix.data.results;
                 resolve(matchesObject);
@@ -109,7 +109,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
 
     let getDiscogsTrackMatches = function(track) {
         return $q(function(resolve, reject) {
-            $http.get(`https://api.discogs.com/database/search?track=${track}&format=vinyl&key=${DiscogsCredentials.key}&secret=${DiscogsCredentials.secret}&page=1&per_page=100`)
+            $http.get(`https://api.discogs.com/database/search?track=${track}&format=vinyl&key=${AuthFactory.discogsCredentials.key}&secret=${AuthFactory.discogsCredentials.secret}&page=1&per_page=100`)
             .then(function(returnedMatrix) {
                 let matchesWithTrack = returnedMatrix.data.results;
                 console.log('releases with that track are: ', matchesWithTrack)
@@ -123,7 +123,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, DiscogsCreden
 
     let getDiscogsArtistTrackMatches = function(artist, track) {
         return $q(function(resolve, reject) {
-            $http.get(`https://api.discogs.com/database/search?artist=${artist}&track=${track}&format=vinyl&key=${DiscogsCredentials.key}&secret=${DiscogsCredentials.secret}&page=2&per_page=75`)
+            $http.get(`https://api.discogs.com/database/search?artist=${artist}&track=${track}&format=vinyl&key=${AuthFactory.discogsCredentials.key}&secret=${AuthFactory.discogsCredentials.secret}&page=1&per_page=100`)
             .then(function(returnedMatrix) {
                 let matchesWithTrack = returnedMatrix.data.results;
                 console.log('releases with that track are: ', matchesWithTrack)

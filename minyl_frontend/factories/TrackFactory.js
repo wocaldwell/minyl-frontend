@@ -1,4 +1,4 @@
-app.factory("TrackFactory", function($window, $q, $http, apiUrl, DiscogsCredentials, RootFactory) {
+app.factory("TrackFactory", function($window, $q, $http, apiUrl, RootFactory) {
 
     let trackTitle = '',
         trackArtist = '';
