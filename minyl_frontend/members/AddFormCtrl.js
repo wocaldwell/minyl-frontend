@@ -1,13 +1,14 @@
 app.controller('AddFormController', function($scope, $http, $location, RootFactory, apiUrl, ReleaseFactory) {
-  $scope.search = {
-    artist: '',
-    release: '',
-    type: ''
-  };
 
-  $scope.findMatches = function() {
-    ReleaseFactory.setSearchTerms($scope.search.artist, $scope.search.release, $scope.search.type);
+    // object that holds user search inputs
+    $scope.search = {
+        artist: '',
+        release: '',
+        type: ''
+    };
 
-    $location.path('/addresults');
-  };
+    $scope.findMatches = function() {
+        ReleaseFactory.setSearchTerms($scope.search.artist, $scope.search.release, $scope.search.type);
+        $location.path('/addresults');
+    };
 });

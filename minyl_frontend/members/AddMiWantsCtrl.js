@@ -1,29 +1,27 @@
 app.controller('AddMiWantsController', function($scope, $http, $location, TrackFactory, ReleaseFactory) {
 
+    // get searched artist
     let miWantsArtist = TrackFactory.getSearchedTrackArtist();
+    // get searched track
     let miWantsTrack = TrackFactory.getSearchedTrack();
+
 
     ReleaseFactory.getDiscogsArtistTrackMatches(miWantsArtist, miWantsTrack)
     .then(function(returnedMatches) {
-        console.log("the matches are:", returnedMatches);
         $scope.searchMatches = returnedMatches;
     })
 
     $scope.addMiWantsRelease = function(match) {
         let selectedRelease = match;
-        // console.log('selectedRelease is ', selectedRelease);
 
         ReleaseFactory.getDiscogsFullResource(selectedRelease.resource_url)
         .then(function(returnedResource){
             $scope.resourceCall = returnedResource;
-            console.log('$scope.resourceCall', $scope.resourceCall)
             let fullResource = returnedResource.data;
-            // console.log('the resource is ', fullResource);
             return ReleaseFactory.postReleaseArtistToApi(fullResource)
         })
         .then(function(returnedArtist){
             let tracklist = []
-            // console.log('the artist is', returnedArtist)
             let resourceTracks = $scope.resourceCall.data.tracklist
             for (var i=0; i<resourceTracks.length; i++) {
                 tracklist.push({
@@ -35,7 +33,6 @@ app.controller('AddMiWantsController', function($scope, $http, $location, TrackF
             return ReleaseFactory.postTracksToApi(tracklist, returnedArtist.data.artist_id)
         })
         .then(function(returnedTracksIds){
-            // console.log('the stuff is: ', returnedTracksIds);
             $scope.tracksIds = returnedTracksIds.data;
             let releaseType = $scope.resourceCall.data.formats[0].descriptions[0];
             if (releaseType === 'LP'){
@@ -50,14 +47,11 @@ app.controller('AddMiWantsController', function($scope, $http, $location, TrackF
             return ReleaseFactory.postReleaseToApi(selectedRelease, $scope.resourceCall, releaseType)
         })
         .then(function(returnedRelease){
-            // console.log('returnedRelease', returnedRelease);
             $scope.release = returnedRelease.data;
             let ownProperty = 0;
-            console.log('$scope.release ', $scope.release);
             return ReleaseFactory.postUserReleaseToApi($scope.release, ownProperty)
         })
         .then(function(returnedUserId){
-            // console.log(returnedUserId)
             return ReleaseFactory.postTrackReleaseToApi($scope.tracksIds, $scope.release)
         })
         .then(function(blah){

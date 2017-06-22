@@ -17,7 +17,6 @@ app.controller('MiCollectionController', function($scope, $http, $location, Root
   });
 
   $scope.setReleaseId = function(releaseId){
-    console.log('selected release id: ', releaseId);
     ReleaseFactory.setReleaseId(releaseId);
     $location.path('/releasedetails');
   };

@@ -35,20 +35,14 @@ npm install
 
 ### Adding Discogs API credentials
 
-This project also accesses information from discogs. Register and get access to Discogs [here](https://www.discogs.com/settings/developers) then set up a credentials directory:
-```
-cd minyl_frontend
-mkdir credentials && cd $_
-touch dicsogsCredentials.js
-```
-Once you have discogs credentials populate `credentials/dicsogsCredentials.js` with:
-```
-app.constant("DiscogsCredentials", {
-    key: "Your key goes here",
-    secret: "Your secret goes here"
-});
+This project also accesses information from discogs. Register and get access to Discogs [here](https://www.discogs.com/settings/developers) then set environment variables:
 
+In your environment's `~/.zshrc` or equivalent file set up save this:
 ```
+export DISCOGSKEY="Your key goes here"
+export DISCOGSSECRET="Your secret goes here"
+```
+This client needs [my backend](https://github.com/wocaldwell/minyl-backend) to access the ENVs so check that out for more information. 
 
 ### Run project locally:
 
@@ -66,14 +60,8 @@ No testing suites included in this project.
 
 ### Deployment
 
-A [deployment build](https://github.com/wocaldwell/minyl-frontend/tree/adding-client) is included in this repo. This branch changes the source of the external API keys to ENV variables and other tweaks to the code for my specific deployment. Your discogs credentials should be set up like this:
+A [deployment build](https://github.com/wocaldwell/minyl-frontend/tree/adding-client) is included in this repo. This branch includes tweaks to the code for my specific deployment. If issues arise in deployment please let me know.
 
-In your environment's `~/.zshrc` or equivalent file set up save this:
-```
-export DISCOGSKEY="Your key goes here"
-export DISCOGSSECRET="Your secret goes here"
-```
-This client needs [my backend](https://github.com/wocaldwell/minyl-backend) to access the ENVs so check that out for more information. If other issues arise in deployment please let me know.
 
 ### Built With
 

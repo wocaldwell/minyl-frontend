@@ -14,7 +14,6 @@ app.controller('MiWantsController', function($scope, $http, $location, RootFacto
   getMiWants()
   .then(function(returnedCollection){
     $scope.miWantsReleases = returnedCollection.data;
-    console.log('miWants: ', $scope.miWantsReleases);
   });
 
   $scope.changeWantToOwn = function(release_id){
@@ -34,7 +33,6 @@ app.controller('MiWantsController', function($scope, $http, $location, RootFacto
   };
 
   $scope.setReleaseId = function(releaseId){
-    console.log('selected release id: ', releaseId);
     ReleaseFactory.setReleaseId(releaseId);
   };
 

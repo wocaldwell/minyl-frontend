@@ -6,11 +6,13 @@ angular.module('MinylClient').controller('LoginController', [
   'apiUrl',
 function($scope, $http, $location, RootFactory, apiUrl) {
 
+// make a user instance
   $scope.user = {
-    username: 'wocaldwell',
-    password: '1234567'
+    username: '',
+    password: ''
   };
 
+// post user credentials to database
   $scope.login = function() {
       $http({
         url: `${apiUrl}/api-token-auth/`,

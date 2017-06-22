@@ -1,6 +1,5 @@
 // Create main Angular module
 var app = angular.module('MinylClient', ['ngRoute', 'angular.filter'])
-            // .constant('apiUrl', "http://www.williamocaldwell.com:8000/");
             .constant('apiUrl', "http://localhost:8000");
 
 
@@ -77,7 +76,6 @@ angular.module('MinylClient').factory('RootFactory', [
 
     return {
       getApiRoot () {
-        console.log("I'm trying to get the api root. . .", secure_token)
         return $http({
           url: apiUrl,
           headers: {
@@ -89,7 +87,6 @@ angular.module('MinylClient').factory('RootFactory', [
         secure_token = token
       },
       getToken () {
-        // console.log('the token is: ', secure_token)
         return secure_token;
       }
     }
