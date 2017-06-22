@@ -14,7 +14,14 @@ app.controller('ReleaseDetailsController', function($scope, $http, $location, Re
     });
 
     $scope.removeUserRelease = function(releaseId){
-        ReleaseFactory.deleteUserRelease(releaseId);
+        ReleaseFactory.deleteUserRelease(releaseId)
+        .then(function(){
+            if($scope.releaseDetails.own_id === 0) {
+                $location.path('/miwants');
+            } if ($scope.releaseDetails.own_id === 1) {
+                $location.path('/micollection');
+            }
+        });
     };
 
 });

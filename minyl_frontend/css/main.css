@@ -19,10 +19,6 @@ body {
     max-width: 800px;
 }
 
-/*body {
-    background: url("../images/minyl-splash.jpg") no-repeat center center fixed;
-    background-size: cover;
-}*/
 
 #splash {
     color: #fff;
@@ -31,5 +27,16 @@ body {
 }
 
 #rockQuote {
+    margin-top: 100px;
     margin-bottom: 100%;
+}
+
+/* outline text */
+.strokeme {
+    color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }

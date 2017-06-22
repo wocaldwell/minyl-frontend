@@ -40,6 +40,7 @@ app.controller('MiWantsController', function($scope, $http, $location, RootFacto
 
   $scope.removeUserRelease = function(releaseId){
     ReleaseFactory.deleteUserRelease(releaseId);
+    $location.path('/home');
   };
 
 });
