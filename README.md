@@ -2,7 +2,7 @@
 
 Is your vinyl record collection getting the best of you? miNyl is a web app for music lovers that helps you manage your analog collection in this "21st Century Digital World" (you got that reference, right?). Search for songs in your collection and keep track of all those records you gotta have. miNyl, helping you listen to GOOD music.
 
-Checkout [miNyl](http://www.williamocaldwell.com/minylclient/) project!
+#### Checkout [miNyl](http://www.williamocaldwell.com/minylclient/)!
 
 ## This is the miNyl AngularJS client
 
@@ -73,7 +73,7 @@ In your environment's `~/.zshrc` or equivalent file set up save this:
 export DISCOGSKEY="Your key goes here"
 export DISCOGSSECRET="Your secret goes here"
 ```
-If other issues arise in deployment please let me know.
+This client needs [my backend](https://github.com/wocaldwell/minyl-backend) to access the ENVs so check that out for more information. If other issues arise in deployment please let me know.
 
 ### Built With
 
