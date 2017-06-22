@@ -3,62 +3,88 @@
 
 Is your vinyl record collection getting the best of you? miNyl is a web app for music lovers that helps you manage your analog collection in this "21st Century Digital World" (you got that reference, right?). Search for songs in your collection and keep track of all those records you gotta have. miNyl, helping you listen to GOOD music.
 
+Checkout [miNyl](www.williamocaldwell.com/minylclient/) project!
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-This client requires my django REST db found here
 
-Install [pip](https://packaging.python.org/installing/)
+This client requires the mYnil django REST database found here: [miNyl database repo](https://github.com/wocaldwell/minyl-backend)
 
-Install [Python 3.6](https://www.python.org/downloads/)
+Install [npm](https://www.npmjs.com/get-npm?utm_source=house&utm_medium=homepage&utm_campaign=free%20orgs&utm_term=Install%20npm)
 
-Install Django and REST framework:
+Install http-server:
 ```
-pip install django
-pip install djangorestframework
+ npm install http-server -g
 ```
 
 ### Installing
+
 Clone repo:
 
 ```
-git clone https://github.com/handy-pandas/bangazon_orientation_api.git
-cd bangazon_orientation_api
+git clone https://github.com/wocaldwell/minyl-frontend
 ```
-Setting up the database:
+Install project dependencies:
 ```
-./damnit_django.sh 
+npm install 
+```
+
+### Adding Discogs API credentials
+
+THis project also accesses information from discogs. Register and get access to Discogs [here](https://www.discogs.com/settings/developers) then set up a credentials directory:
+```
+cd minyl_frontend
+mkdir credentials && cd $_
+touch dicsogsCredentials.js
+```
+Once you have discogs credentials populate `credentials/dicsogsCredentials.js` with:
+```
+app.constant("DiscogsCredentials", {
+    key: "Your key goes here",
+    secret: "Your secret goes here"
+});
+
+### Run project locally:
+
 ```
 Run project in browser:
 
 ```
-python manage.py runserver
+http-server
 ```
 In your browser you should see somthing like this:
-![api screen shot](images/api-root.jpg?raw=true)
+![myNyl screenshot](images/minyl-screen-shot.jpg?raw=true)
 
-## Running the tests
+### Running the tests
+
 No testing suites included in this project.
 
-## Deployment
-No additional resources required.
-## Built With
+### Deployment
 
-* [Python](http://www.dropwizard.io/1.0.2/docs/) - Main Language
-* [Django](http://www.dropwizard.io/1.0.2/docs/) - The framework used
-* [pip](https://maven.apache.org/) - Dependency Management
+A [deployment build](https://github.com/wocaldwell/minyl-frontend/tree/adding-client) is included in this repo. This branch changes the source of the external API keys to ENV variables and other tweaks to the code for my specific deployment. Your discogs credentials should be set up like this:
+
+In your environment's `~/.zshrc` or equivalent file set up save this:
+```
+export DISCOGSKEY="Your key goes here"
+export DISCOGSSECRET="Your secret goes here"
+```
+If other issues arise in deployment please let me know.
+
+### Built With
+
+* [Javascript](https://www.javascript.com/) - Main Language
+* [AngularJS](https://angularjs.org/) - JS Framework
+* [Bootstrap](https://maven.apache.org/) - Frontend Framework
 
 
-## Authors
+### Authors
 
 * **William Caldwell** - [wocaldwell](https://github.com/wocaldwell)
-* **Taylor Perkins** - [taylorperkins](https://github.com/taylorperkins)
-* **Aaron Barfoot** - [barfootaaron](https://github.com/barfootaaron)
-* **Talbot Lawrence** - [talbotlawrence](https://github.com/talbotlawrence)
-* **James Tonkin** - [jamestonkin](https://github.com/jamestonkin)
 
 
 ## Acknowledgments
+
 "Thank you all and GOOD NIGHT!" - Every Musician Ever
