@@ -1,7 +1,9 @@
 app.factory("AuthFactory", function($window, $q, $http, apiUrl, RootFactory) {
 
+    // local object that will store the returned credentials
     let discogsCredentials = {}
 
+    // requesting the credentials from the api
     let getEnvKeysFromAPI = function() {
         return $http({
             url: `${apiUrl}/envkeys/`,
@@ -12,19 +14,15 @@ app.factory("AuthFactory", function($window, $q, $http, apiUrl, RootFactory) {
         })
     }
 
+    // set the credentials for use by the application
     let setDiscogsCredentials = function(creds) {
         discogsCredentials["key"] = creds.key;
         discogsCredentials["secret"] = creds.secret;
     }
 
-    let getDiscogsCredentials = function(creds) {
-        return discogsCredentials
-    }
-
     return {
         getEnvKeysFromAPI,
         setDiscogsCredentials,
-        getDiscogsCredentials,
         discogsCredentials
     }
 });

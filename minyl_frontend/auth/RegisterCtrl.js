@@ -6,12 +6,14 @@ angular.module('MinylClient').controller('RegisterController', [
   'apiUrl',
 function($scope, $http, $location, RootFactory, apiUrl) {
 
+// make a user instance
   $scope.user = {
     email: "me@internet.com",
     username: "",
     password: ""
   };
 
+// post user the entered credentials to database
   $scope.register = function() {
       $http({
         url: `${apiUrl}/register/`,

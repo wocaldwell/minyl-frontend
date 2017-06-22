@@ -1,5 +1,6 @@
 app.factory("TrackFactory", function($window, $q, $http, apiUrl, RootFactory) {
 
+    // create variables to store user input
     let trackTitle = '',
         trackArtist = '';
 

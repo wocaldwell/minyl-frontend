@@ -1,5 +1,4 @@
-app.controller('SplashController', function($scope, $http, $location, AuthFactory) {
-
+app.controller('SplashController', function($scope, $http, $location) {
 
 
 });
