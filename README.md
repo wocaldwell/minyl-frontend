@@ -1,9 +1,10 @@
 # miNyl - helping you listen to GOOD music
-### AngularJS client
 
 Is your vinyl record collection getting the best of you? miNyl is a web app for music lovers that helps you manage your analog collection in this "21st Century Digital World" (you got that reference, right?). Search for songs in your collection and keep track of all those records you gotta have. miNyl, helping you listen to GOOD music.
 
-Checkout [miNyl](www.williamocaldwell.com/minylclient/) project!
+Checkout [miNyl](http://www.williamocaldwell.com/minylclient/) project!
+
+## This is the miNyl AngularJS client
 
 ## Getting Started
 
@@ -11,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This client requires the mYnil django REST database found here: [miNyl database repo](https://github.com/wocaldwell/minyl-backend)
+This client requires the miNyl django REST database found here: [miNyl database repo](https://github.com/wocaldwell/minyl-backend)
 
 Install [npm](https://www.npmjs.com/get-npm?utm_source=house&utm_medium=homepage&utm_campaign=free%20orgs&utm_term=Install%20npm)
 
@@ -34,7 +35,7 @@ npm install
 
 ### Adding Discogs API credentials
 
-THis project also accesses information from discogs. Register and get access to Discogs [here](https://www.discogs.com/settings/developers) then set up a credentials directory:
+This project also accesses information from discogs. Register and get access to Discogs [here](https://www.discogs.com/settings/developers) then set up a credentials directory:
 ```
 cd minyl_frontend
 mkdir credentials && cd $_
@@ -47,9 +48,10 @@ app.constant("DiscogsCredentials", {
     secret: "Your secret goes here"
 });
 
+```
+
 ### Run project locally:
 
-```
 Run project in browser:
 
 ```
