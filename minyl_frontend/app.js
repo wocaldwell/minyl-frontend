@@ -1,6 +1,6 @@
 // Create main Angular module
 var app = angular.module('MinylClient', ['ngRoute', 'angular.filter'])
-            .constant('apiUrl', "http://www.williamocaldwell.com:8000/");
+            .constant('apiUrl', "https://api.www.williamocaldwell.com");
 
 
 angular.module('MinylClient').config(
