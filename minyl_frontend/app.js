@@ -76,7 +76,6 @@ angular.module('MinylClient').factory('RootFactory', [
 
     return {
       getApiRoot () {
-        console.log("I'm trying to get the api root. . .", secure_token)
         return $http({
           url: apiUrl,
           headers: {

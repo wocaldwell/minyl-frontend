@@ -61,7 +61,6 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, 
     };
 
     let postReleaseToApi = function(selectedRelease, releaseDetails, type) {
-        console.log('selectedRelease in postReleaseToApi: ', selectedRelease.label[0])
         return $http({
             url: `${apiUrl}/release/`,
             headers: {
@@ -112,7 +111,6 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, 
             $http.get(`https://api.discogs.com/database/search?track=${track}&format=vinyl&key=${AuthFactory.discogsCredentials.key}&secret=${AuthFactory.discogsCredentials.secret}&page=1&per_page=100`)
             .then(function(returnedMatrix) {
                 let matchesWithTrack = returnedMatrix.data.results;
-                console.log('releases with that track are: ', matchesWithTrack)
                 resolve(matchesWithTrack);
             })
             .catch (function(error) {
@@ -126,7 +124,6 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, 
             $http.get(`https://api.discogs.com/database/search?artist=${artist}&track=${track}&format=vinyl&key=${AuthFactory.discogsCredentials.key}&secret=${AuthFactory.discogsCredentials.secret}&page=1&per_page=100`)
             .then(function(returnedMatrix) {
                 let matchesWithTrack = returnedMatrix.data.results;
-                console.log('releases with that track are: ', matchesWithTrack)
                 resolve(matchesWithTrack);
             })
             .catch (function(error) {

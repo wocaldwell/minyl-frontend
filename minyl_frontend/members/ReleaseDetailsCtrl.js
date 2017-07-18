@@ -5,7 +5,6 @@ app.controller('ReleaseDetailsController', function($scope, $http, $location, Re
     $scope.getReleaseDetails = ReleaseFactory.getReleaseDetailsFromApi(releaseId)
     .then(function(returnedReleaseDetails){
         $scope.releaseDetails = returnedReleaseDetails.data;
-        console.log('release detail)s: ',$scope.releaseDetails);
         if ($scope.releaseDetails.own_id === 0) {
             $scope.releaseStatus = 'want';
         } if ($scope.releaseDetails.own_id === 1) {
