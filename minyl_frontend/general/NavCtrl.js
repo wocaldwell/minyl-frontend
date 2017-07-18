@@ -1,4 +1,4 @@
-app.controller('NavController', function($scope, $http, $location, apiURL, RootFactory) {
+app.controller('NavController', function($scope, $http, $location, apiUrl, RootFactory) {
 
     let sessionToken = null;
 
