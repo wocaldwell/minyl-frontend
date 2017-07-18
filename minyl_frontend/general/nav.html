@@ -11,11 +11,15 @@
         </div>
         <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a ng-href="/#!/register">Sign up</a></li>
-                <li><a ng-href="/#!/login">Login</a></li>
-                <li><a ng-href="/#!/addform">add a record</a></li>
-                <li><a ng-href="/#!/miwants">miWants</a></li>
-                <li><a ng-href="/#!/micollection">miCollection</a></li>
+                <li ng-show="isActive()">
+                    <button id="demo-button" class="btn btn-danger btn-sm" type="button" ng-click="demoLogin()">Demo Login</button>
+                </li>
+                <li ng-show="isActive()"><a ng-href="/#!/register">Sign up</a></li>
+                <li ng-show="isActive()"><a ng-href="/#!/login">Login</a></li>
+                <li ng-hide="isActive()"><a ng-href="/#!/addform">add a record</a></li>
+                <li ng-hide="isActive()"><a ng-href="/#!/miwants">miWants</a></li>
+                <li ng-hide="isActive()"><a ng-href="/#!/micollection">miCollection</a></li>
+                <li ng-hide="isActive()"><a ng-href="/">Logout</a></li>
             <ul>
         </div>
     </div>

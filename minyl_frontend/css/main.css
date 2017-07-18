@@ -32,5 +32,20 @@ body {
 }
 
 #rockQuote {
+    margin-top: 100px;
     margin-bottom: 100%;
+}
+
+/* outline text */
+.strokeme {
+    color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+#demo-button {
+    margin-top: 10px;
 }
