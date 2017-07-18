@@ -1,11 +1,15 @@
+/* create proper spacing for fixed navbar */
 body {
     margin-top: 50px;
 }
 
+/* ui class to make clickable things more identifiable to the user */
 .hoverPointer:hover {
     cursor: pointer;
     cursor: hand;
 }
+
+/* general styling tweaks */
 
 .release {
     margin-bottom: 10px;
@@ -19,6 +23,7 @@ body {
     max-width: 800px;
 }
 
+/* splash page */
 
 #splash {
     color: #fff;
@@ -39,4 +44,8 @@ body {
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
+}
+
+#demo-button {
+    margin-top: 10px;
 }

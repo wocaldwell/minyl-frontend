@@ -1,5 +1,10 @@
 app.controller('SplashController', function($scope, $http, $location, apiUrl) {
 
+    // Show welcome / demo login message on page load
+    $(document).ready(function() {
+        $('#welcomeModal').modal('show');
+    });
+
     function getAllQuotes() {
         return $http({
             url: `${apiUrl}/quotes/`
