@@ -32,7 +32,7 @@ body {
 }
 
 #rockQuote {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 100%;
 }
 
@@ -48,4 +48,15 @@ body {
 
 #demo-button {
     margin-top: 10px;
+}
+
+#main-logo {
+    margin-top: 50px;
+    max-width: 375px;
+}
+
+/* navbar */
+
+.navbar-brand {
+    padding: 10px 15px;
 }
