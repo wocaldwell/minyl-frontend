@@ -41,6 +41,10 @@ angular.module('MinylClient').config(
         controller: 'AddFormController',
         templateUrl: 'minyl_frontend/members/addform.html'
       })
+      .when('/addbarcode', {
+        controller: 'AddBarcodeController',
+        templateUrl: 'minyl_frontend/members/addbarcode.html'
+      })
       .when('/addresults', {
         controller: 'AddResultsController',
         templateUrl: 'minyl_frontend/members/addresults.html'

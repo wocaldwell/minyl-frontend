@@ -14,6 +14,7 @@ app.controller('AddResultsController', function($scope, $http, $location, RootFa
         .then(function(returnedResource){
             $scope.resourceCall = returnedResource;
             let fullResource = returnedResource.data;
+            console.log(fullResource)
             return ReleaseFactory.postReleaseArtistToApi(fullResource)
         })
         .then(function(returnedArtist){
