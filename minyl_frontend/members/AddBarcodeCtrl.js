@@ -1,4 +1,4 @@
-app.controller('AddBarcodeController', function($scope, ReleaseFactory) {
+app.controller('AddBarcodeController', function($scope, $location, ReleaseFactory) {
 
     // object that holds user search inputs
     $("#the-file-input").change(function() {
@@ -15,9 +15,13 @@ app.controller('AddBarcodeController', function($scope, ReleaseFactory) {
         }, function(result){
             if(result.codeResult) {
                 console.log("result", result.codeResult.code);
+                ReleaseFactory.setSearchBarcode(result.codeResult.code);
+                $location.path('/addresults');
+                $scope.$apply();
             } else {
                 console.log(result);
                 console.log("not detected");
+                $location.path('/micollection');
             }
         });
     });
