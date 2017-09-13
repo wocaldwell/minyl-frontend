@@ -38,8 +38,8 @@ app.controller('AddResultsController', function($scope, $http, $location, RootFa
         })
         .then(function(returnedTracksIds){
             $scope.tracksIds = returnedTracksIds.data;
-            let releaseType = search.searchType;
-            return ReleaseFactory.postReleaseToApi(selectedRelease, $scope.resourceCall, releaseType)
+            // let releaseType = search.searchType;
+            return ReleaseFactory.postReleaseToApi(selectedRelease, $scope.resourceCall)
         })
         .then(function(returnedRelease){
             $scope.release = returnedRelease.data;
