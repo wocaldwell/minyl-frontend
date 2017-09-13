@@ -13,11 +13,32 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, 
         };
     };
 
+    let setSearchBarcode = function(barcode) {
+        searchParams = {
+            "barcode": barcode
+        };
+        console.log("barcode is: ", searchParams.barcode);
+    };
+
     let getSearchTerms = function() {
         return searchParams;
     };
 
-    // get the discogs tracks that match the search terms
+    // get the discogs releases that match barcode
+    let getDiscogsBarcodeMatches = function(barcode) {
+        return $q(function(resolve, reject) {
+            $http.get(`https://api.discogs.com/database/search?type=release&barcode=${barcode}&key=${AuthFactory.discogsCredentials.key}&secret=${AuthFactory.discogsCredentials.secret}`)
+            .then(function(returnedMatrix) {
+                let matchesObject = returnedMatrix.data.results;
+                resolve(matchesObject);
+            })
+            .catch (function(error) {
+                reject(error);
+            });
+        });
+    };
+
+    // get the discogs releases that match the search terms
     let getDiscogsMatches = function(artist, release) {
         return $q(function(resolve, reject) {
             $http.get(`https://api.discogs.com/database/search?artist=${artist}&release_title=${release}&format=vinyl&key=${AuthFactory.discogsCredentials.key}&secret=${AuthFactory.discogsCredentials.secret}`)
@@ -30,6 +51,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, 
             });
         });
     };
+
 
     let getDiscogsFullResource = function(resource_url) {
         return $http.get(resource_url);
@@ -171,6 +193,8 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, 
     return {
         setSearchTerms,
         getSearchTerms,
+        setSearchBarcode,
+        getDiscogsBarcodeMatches,
         getDiscogsMatches,
         getDiscogsFullResource,
         postReleaseArtistToApi,

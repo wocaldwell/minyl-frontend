@@ -2,10 +2,17 @@ app.controller('AddResultsController', function($scope, $http, $location, RootFa
 
     let search = ReleaseFactory.getSearchTerms()
 
-    ReleaseFactory.getDiscogsMatches(search.searchArtist, search.searchRelease)
-    .then(function(returnedMatches) {
-        $scope.searchMatches = returnedMatches;
-    })
+    if(search.barcode) {
+        ReleaseFactory.getDiscogsBarcodeMatches(search.barcode)
+        .then(function(returnedMatches) {
+            $scope.searchMatches = returnedMatches;
+        });
+    } else {
+        ReleaseFactory.getDiscogsMatches(search.searchArtist, search.searchRelease)
+        .then(function(returnedMatches) {
+            $scope.searchMatches = returnedMatches;
+        });
+    }
 
     $scope.addRelease = function(match) {
         let selectedRelease = match;
