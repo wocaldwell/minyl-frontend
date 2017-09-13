@@ -5,11 +5,10 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, 
         artistId,
         releaseId;
 
-    let setSearchTerms = function(artist, release, type) {
+    let setSearchTerms = function(artist, release) {
         searchParams = {
             "searchArtist": artist,
-            "searchRelease": release,
-            "searchType": parseInt(type)
+            "searchRelease": release
         };
     };
 
@@ -17,7 +16,6 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, 
         searchParams = {
             "barcode": barcode
         };
-        console.log("barcode is: ", searchParams.barcode);
     };
 
     let getSearchTerms = function() {
@@ -84,7 +82,23 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, 
         })
     };
 
-    let postReleaseToApi = function(selectedRelease, releaseDetails, type) {
+    let determineReleaseType = function(selectedRelease) {
+        let formats = selectedRelease.format,
+            type;
+        if (formats[1] === "LP") {
+            type = 1;
+        }if (formats[1] === "7\"") {
+            type = 2;
+        }if (formats[1] === "10\"") {
+            type = 3;
+        }if (formats[1] === "12\"") {
+            type = 4;
+        }
+        return type;
+    };
+
+    let postReleaseToApi = function(selectedRelease, releaseDetails) {
+        let releaseType = determineReleaseType(selectedRelease);
         return $http({
             url: `${apiUrl}/release/`,
             headers: {
@@ -97,7 +111,7 @@ app.factory("ReleaseFactory", function($window, $q, $http, apiUrl, AuthFactory, 
                 "label": selectedRelease.label[0],
                 "catalog_number": selectedRelease.catno,
                 "image": selectedRelease.thumb,
-                "release_type": type
+                "release_type": releaseType
             }
         })
     };
