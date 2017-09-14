@@ -1,8 +1,11 @@
 app.controller('AddBarcodeController', function($scope, $location, ReleaseFactory) {
 
+
+    $scope.unreadableMessage = "The barcode in that image is unreadable. Please try again with a new image.";
+
     // object that holds user search inputs
     $("#the-file-input").change(function() {
-        // will log a FileList object, view gifs below
+        $scope.unreadable = false;
         console.log(this.files);
         let barcodeImage = URL.createObjectURL(this.files[0]);
         Quagga.decodeSingle({
@@ -21,7 +24,8 @@ app.controller('AddBarcodeController', function($scope, $location, ReleaseFactor
             } else {
                 console.log(result);
                 console.log("not detected");
-                $location.path('/micollection');
+                $scope.unreadable = true;
+                $scope.$apply();
             }
         });
     });
