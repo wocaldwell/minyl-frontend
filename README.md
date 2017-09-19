@@ -52,7 +52,7 @@ Run project in browser:
 http-server
 ```
 In your browser you should see somthing like this:
-![myNyl screenshot](images/minyl-screen-shot.jpg?raw=true)
+![myNyl screenshot](images/minyl-screen-shot.png?raw=true)
 
 ### Running the tests
 
